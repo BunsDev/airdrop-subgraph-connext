@@ -1,0 +1,21 @@
+type CrosschainClaim @entity {
+  id: ID!
+  transferId: Bytes
+  beneficiary: Bytes!
+  recipient: Bytes!
+  recipientDomain: BigInt!
+  amount: BigInt!
+
+  caller: Bytes
+  transactionHash: Bytes
+  timestamp: BigInt
+  gasPrice: BigInt
+  gasLimit: BigInt
+  blockNumber: BigInt
+}
+
+type Info @entity {
+  id: ID!
+  totalCount: BigInt
+  totalAmount: BigInt
+}

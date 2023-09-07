@@ -1,0 +1,28 @@
+specVersion: 0.0.4
+description: Connext Airdrop Subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Distributor
+    network: arbitrum-one
+    source:
+      address: '0xe6b7ab9ebcfbf1a72e489ff00cdf9c6473ff6224'
+      abi: Distributor
+      startBlock: 128095236
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - CrosschainClaim
+        - Info
+      abis:
+        - name: Distributor
+          file: ./abis/Distributor.json
+      eventHandlers:
+        - event:
+            CrosschainClaim(indexed bytes32,indexed address,indexed
+            address,uint32,uint256)
+          handler: handleCrosschainClaim
+      file: ./src/mapping.ts
